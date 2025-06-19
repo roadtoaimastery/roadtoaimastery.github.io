@@ -1,0 +1,51 @@
+<!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+  <header class="profile-wrapper">
+    <a href="/" id="avatar" class="rounded-circle">
+      {% if site.avatar %}
+        <img
+          src="{{ site.avatar | relative_url }}"
+          alt="{{ site.title }}"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"
+        >
+      {% endif %}
+    </a>
+
+    <a class="site-title d-block" href="/">{{ site.title }}</a>
+    <p class="site-subtitle fst-italic mb-0">{{ site.tagline }}</p>
+  </header>
+  <!-- .profile-wrapper -->
+
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+      <!-- home -->
+      <li class="nav-item{% if page.layout == 'home' %} active{% endif %}">
+        <a href="/" class="nav-link">
+          <i class="fa-fw fas fa-home"></i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <!-- the real tabs -->
+      {% for tab in site.tabs %}
+        <li class="nav-item{% if tab.url == page.url %} active{% endif %}">
+          <a href="{{ tab.url }}" class="nav-link">
+            <i class="fa-fw {{ tab.icon }}"></i>
+            <span>{{ tab.title | upcase }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
+    {% include sidebar-contact.html %}
+
+    <!-- Theme toggle button -->
+    <button class="mode-toggle btn" id="mode-toggle" type="button" title="Switch Theme">
+      <i class="fas fa-adjust"></i>
+    </button>
+  </div>
+  <!-- .sidebar-bottom -->
+</aside>
+<!-- #sidebar -->

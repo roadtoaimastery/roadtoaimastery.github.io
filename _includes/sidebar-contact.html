@@ -1,0 +1,43 @@
+{% assign contact_types = site.data.contact %}
+
+{% for contact in contact_types %}
+  {% assign url = '' %}
+
+  {% case contact.type %}
+    {% when 'github' %}
+      {% if site.github.username %}
+        {% assign url = 'https://github.com/' | append: site.github.username %}
+      {% endif %}
+    {% when 'twitter' %}
+      {% if site.twitter.username %}
+        {% assign url = 'https://twitter.com/' | append: site.twitter.username %}
+      {% endif %}
+    {% when 'instagram' %}
+      {% if site.instagram.username %}
+        {% assign url = 'https://instagram.com/' | append: site.instagram.username %}
+      {% endif %}
+    {% when 'email' %}
+      {% assign url = 'javascript:location.href = \'mailto:\' + [\'roadtoaimastery\',\'gmail.com\'].join(\'@\')' %}
+    {% when 'rss' %}
+      {% assign url = '/feed.xml' %}
+    {% else %}
+      {% if contact.url %}
+        {% assign url = contact.url %}
+      {% endif %}
+  {% endcase %}
+
+  {% if url != '' %}
+    <a
+      href="{{ url }}"
+      aria-label="{{ contact.type }}"
+      {% unless contact.noblank %}
+        target="_blank"
+        {% if contact.type != 'email' %}
+          rel="noopener noreferrer"
+        {% endif %}
+      {% endunless %}
+    >
+      <i class="{{ contact.icon }}"></i>
+    </a>
+  {% endif %}
+{% endfor %}
