@@ -1,0 +1,97 @@
+---
+---
+
+@use 'main';
+
+/* Custom ChatGPT Prompt Styling */
+.chatgpt-prompt {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0 24px 40px; /* Offset to the right */
+  max-width: calc(100% - 60px); /* Account for the offset */
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #2c3e50;
+  white-space: pre-wrap; /* Preserve line breaks and spaces */
+  word-wrap: break-word; /* Handle long words gracefully */
+}
+
+.chatgpt-prompt::before {
+  content: '💬 ChatGPT Prompt';
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: #ffffff;
+  padding: 4px 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #6c757d;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chatgpt-prompt pre {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  white-space: pre-wrap !important; /* Preserve formatting in pre tags too */
+}
+
+.chatgpt-prompt code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  color: inherit !important;
+  white-space: pre-wrap !important; /* Preserve formatting in code tags too */
+}
+
+/* Preserve paragraph spacing within prompts */
+.chatgpt-prompt p {
+  margin-bottom: 1em;
+}
+
+.chatgpt-prompt p:last-child {
+  margin-bottom: 0;
+}
+
+/* Dark mode support */
+[data-mode='dark'] .chatgpt-prompt {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+  color: #e2e8f0;
+}
+
+[data-mode='dark'] .chatgpt-prompt::before {
+  background: #2d3748;
+  color: #a0aec0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chatgpt-prompt {
+    margin-left: 16px;
+    max-width: calc(100% - 32px);
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatgpt-prompt {
+    margin-left: 8px;
+    max-width: calc(100% - 16px);
+    padding: 14px 16px;
+  }
+}
